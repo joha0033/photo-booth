@@ -1,15 +1,19 @@
 {
   "name": "photo-booth",
+  "productName": "PhotoBoot",
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
   "scripts": {
+    "build": "rimraf photo-booth-* && electron-packager . --all --icon=app",
     "start": "electron ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron-prebuilt": "^1.4.13"
+    "electron-packager": "^13.0.1",
+    "electron-prebuilt": "^1.4.13",
+    "rimraf": "^2.6.3"
   }
 }

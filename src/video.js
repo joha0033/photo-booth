@@ -3,15 +3,16 @@ const constraints = {
 	video: {
 		madatory: {
 			minWidth: 853,
-			minHeight: 400,
+			minHeight: 480,
 			maxWidth: 853,
-			maxHeight: 400
+			maxHeight: 480
 		}
 
 	}
 };
 
 const handleSuccess = (videoEl, stream) => {
+	console.log("success called");
 	videoEl.src = window.URL.createObjectURL(stream);
 };
 
@@ -20,11 +21,16 @@ const handleError = (error) => {
 };
 
 exports.init = (nav, videoEl) => {
-	navigator.getUserMedia = navigator.webkitGetUserMedia;
-	navigator.getUserMedia(constraints, stream => handleSuccess(videoEl, stream), handleError);
+	nav.getUserMedia = nav.webkitGetUserMedia;
+	nav.getUserMedia(constraints, stream => handleSuccess(videoEl, stream), handleError);
 };
 
-exports.captureBytes = (videoEl, ctx, canvasEl) => {
-	ctx.drawImage(videoEl, 0, 0);
-	return canvasEl.toDataURL("image/png");
+// exports.captureBytes = (videoEl, ctx, canvasEl) => {
+// 	ctx.drawImage(videoEl, 0, 0);
+// 	return canvasEl.toDataURL("image/png");
+// };
+
+exports.captureBytesFromLiveCanvas = canvas => {
+	// ctx.drawImage(videoEl, 0, 0);
+	return canvas.toDataURL("image/png");
 };
